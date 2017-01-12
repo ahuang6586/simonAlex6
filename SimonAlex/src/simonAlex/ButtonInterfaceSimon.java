@@ -6,6 +6,8 @@ import guis.components.Action;
 import guis.components.Clickable;
 
 public interface ButtonInterfaceSimon extends Clickable {
+	
+	
 
 	void setColor(Color color);
 

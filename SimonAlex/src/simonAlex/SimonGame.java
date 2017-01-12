@@ -19,7 +19,6 @@ public class SimonGame extends GUIApplication {
 	public void initScreen() {
 		SimonGameScreen sms = new SimonGameScreen(getWidth(),getHeight());
 		setScreen(sms);
-
 	}
 
 }

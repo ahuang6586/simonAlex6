@@ -7,6 +7,9 @@ import guis.components.Action;
 import guis.components.ClickableScreen;
 import guis.components.TextLabel;
 import guis.components.Visible;
+import partnerCodeHerePlease.Button;
+import partnerCodeHerePlease.Move;
+import partnerCodeHerePlease.Progress;
 
 
 public class SimonGameScreen extends ClickableScreen implements Runnable {
@@ -33,30 +36,29 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		moves = new ArrayList<MoveInterface>();
 		//add 2 moves to start
 		lastSelectedButton = -1;
-		moves.add((MoveInterface) randomMove());
-		moves.add((MoveInterface) randomMove());
+		moves.add(randomMove());
+		moves.add(randomMove());
 		roundNumber = 0;
 		viewObjects.add(progress);
 		viewObjects.add(label);
 
 	}
 
-	private ButtonInterfaceSimon randomMove() {
+	private MoveInterface randomMove() {
 		int select = (int) (Math.random()*buttons.length);
 		while(select == lastSelectedButton){
 			select = (int) (Math.random()*buttons.length);
 		}
 		lastSelectedButton = select;
-	//	return new Move(buttons[select]);
-	 return null;
+		return getMove(buttons[select]);
 		
 		
 		
 	}
 	
-	private Object getMove(ButtonInterfaceSimon b) {
+	private MoveInterface getMove(ButtonInterfaceSimon b) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Move(b);
 	}
 
 	/**
@@ -64,7 +66,7 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 	*/
 	private ProgressInterface getProgress() {
 		// TODO Auto-generated method stub
-		return null;
+		return new Progress(0,0,100,100);
 	}
 
 	private void addButtons() {
@@ -72,10 +74,12 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		int numberOfButtons = 4;
 		Color[] colors = {Color.blue,Color.green,Color.yellow,Color.red};
 		for(int i = 0; i < numberOfButtons; i++){
-			ButtonInterfaceSimon b = getAButton();
+			ButtonInterfaceSimon b = getAButton(colors[i]);
 			b.setColor(colors[i]);
-			b.setX(getWidth()/2+100*(int)Math.cos(Math.PI/3*(i)));
-			b.setY(getHeight()/2+100*(int)Math.sin(Math.PI/3*(i)));
+			//b.setX(getWidth()/2+100*(int)Math.cos(Math.PI/3*(i)));
+			//b.setY(getHeight()/2+100*(int)Math.sin(Math.PI/3*(i)));
+			b.setX(300);
+			b.setX(400);
 			b.setAction(new Action(){
 				public void act(){
 					Thread blink = new Thread(new Runnable(){
@@ -117,9 +121,9 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 			viewObjects.add(b);
 		}
 	}
-	private ButtonInterfaceSimon getAButton() {
+	private ButtonInterfaceSimon getAButton(Color c) {
 		// TODO Auto-generated method stub
-		return null;
+		return new Button(100, 100, 100, 100, c);
 	}
 
 	@Override

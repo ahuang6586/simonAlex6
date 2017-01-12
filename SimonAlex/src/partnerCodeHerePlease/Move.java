@@ -7,6 +7,10 @@ import simonAlex.MoveInterface;
  */
 public class Move implements MoveInterface{
     private ButtonInterfaceSimon b; // button
+    public Move(ButtonInterfaceSimon b){
+    	this.b = b;
+    }
+    
     @Override
     public ButtonInterfaceSimon getButton() {
         return b;
