@@ -36,8 +36,8 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		moves = new ArrayList<MoveInterface>();
 		//add 2 moves to start
 		lastSelectedButton = -1;
-		moves.add(randomMove());
-		moves.add(randomMove());
+		//moves.add(randomMove());
+		//moves.add(randomMove());
 		roundNumber = 0;
 		viewObjects.add(progress);
 		viewObjects.add(label);
@@ -50,7 +50,7 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 			select = (int) (Math.random()*buttons.length);
 		}
 		lastSelectedButton = select;
-		return getMove(buttons[select]);
+		return new Move(buttons[select]);
 		
 		
 		
@@ -76,10 +76,10 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		for(int i = 0; i < numberOfButtons; i++){
 			ButtonInterfaceSimon b = getAButton(colors[i]);
 			b.setColor(colors[i]);
-			//b.setX(getWidth()/2+100*(int)Math.cos(Math.PI/3*(i)));
-			//b.setY(getHeight()/2+100*(int)Math.sin(Math.PI/3*(i)));
-			b.setX(300);
-			b.setX(400);
+			b.setX(getWidth()/2+100*(int)Math.cos(Math.PI/3*(i)));
+			b.setY(getHeight()/2+100*(int)Math.sin(Math.PI/3*(i)));
+//			b.setX(300);
+//			b.setX(400);
 			b.setAction(new Action(){
 				public void act(){
 					Thread blink = new Thread(new Runnable(){
@@ -167,8 +167,15 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		
 	}
 
-	private void changeText(String string) {
+	private void changeText(String s) {
 		// TODO Auto-generated method stub
+		label.setText(s);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
