@@ -26,7 +26,6 @@ public class Button extends Component implements ButtonInterfaceSimon {
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 35, 25);
 		g.setColor(Color.black);
 		g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 35, 25);
-		FontMetrics fm = g.getFontMetrics();
 	}
 
 	@Override
@@ -53,11 +52,13 @@ public class Button extends Component implements ButtonInterfaceSimon {
 	@Override
 	public void setX(int x) {
 		this.x = x;
+		update();
 	}
 
 	@Override
 	public void setY(int y) {
 		this.y = y;
+		update();
 	}
 
 	@Override
