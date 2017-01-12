@@ -22,6 +22,7 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 	private int sequenceIndex;
 	private	int lastSelectedButton;
 	public SimonGameScreen(int width, int height) {
+		
 		super(width, height);
 		Thread app = new Thread(this);
 		app.start();
@@ -74,10 +75,10 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		int numberOfButtons = 4;
 		Color[] colors = {Color.blue,Color.green,Color.yellow,Color.red};
 		for(int i = 0; i < numberOfButtons; i++){
-			ButtonInterfaceSimon b = getAButton(colors[i]);
+			ButtonInterfaceSimon b = new Button(100, 100, 100, 100, colors[i]);//getAButton(colors[i]);
 			b.setColor(colors[i]);
-			b.setX(getWidth()/2+100*(int)Math.cos(Math.PI/3*(i)));
-			b.setY(getHeight()/2+100*(int)Math.sin(Math.PI/3*(i)));
+			b.setX(800/2+100*(int)Math.cos(Math.PI/3*(i)));
+			b.setY(600/2+100*(int)Math.sin(Math.PI/3*(i)));
 //			b.setX(300);
 //			b.setX(400);
 			b.setAction(new Action(){
