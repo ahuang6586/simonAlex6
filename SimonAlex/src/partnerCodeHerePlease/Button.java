@@ -1,12 +1,12 @@
 package partnerCodeHerePlease;
 
-import guis.components.Action;
+import gui.components.Action;
 import simonAlex.ButtonInterfaceSimon;
-import guis.components.Component;
+import gui.components.Components;
 
 import java.awt.*;
 
-public class Button extends Component implements ButtonInterfaceSimon {
+public class Button extends Components implements ButtonInterfaceSimon {
 	private int x, y;
 	private Color color; // color depending at state.
 	private Color hColor; // keep track of color of original button for highlighted state.

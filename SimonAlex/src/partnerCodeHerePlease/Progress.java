@@ -1,6 +1,6 @@
 package partnerCodeHerePlease;
 
-import guis.components.Component;
+import gui.components.Components;
 import simonAlex.ProgressInterface;
 
 import java.awt.*;
@@ -9,7 +9,7 @@ import java.awt.image.BufferedImage;
 /**
  * Created by dav1d on 1/12/17.
  */
-public class Progress extends Component implements ProgressInterface {
+public class Progress extends Components implements ProgressInterface {
     private BufferedImage image;
     private int sequenceSize, round;
     private boolean over;
@@ -26,7 +26,7 @@ public class Progress extends Component implements ProgressInterface {
         FontMetrics fm = g.getFontMetrics();
         if(over){
             g.setColor(new Color(255,55,90));
-            g.fillRect(0, 50, 150, 150);
+            g.fillRect(0, 0, 150 - 1, 150);
             g.setColor(Color.white);
             String go = "GAME OVER!";
             g.drawString(go, (150 - fm.stringWidth(go))/2, 20);
@@ -49,15 +49,18 @@ public class Progress extends Component implements ProgressInterface {
     @Override
     public void gameOver() { // game is done
         over = true;
+        update();
     }
 
     @Override
     public void setRound(int roundNumber) {
         round = roundNumber;
+        update();
     }
 
     @Override
     public void setSequenceSize(int size) {
         sequenceSize = size;
+        update();
     }
 }

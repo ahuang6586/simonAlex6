@@ -1,6 +1,6 @@
 package simonAlex;
 
-import guis.components.Visible;
+import gui.components.Visible;
 
 public interface ProgressInterface extends Visible {
 

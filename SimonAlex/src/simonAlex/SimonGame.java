@@ -1,6 +1,6 @@
 package simonAlex;
 
-import GUI.GUIApplication;
+import gui.GUIApplication;
 
 @SuppressWarnings("serial")
 public class SimonGame extends GUIApplication {

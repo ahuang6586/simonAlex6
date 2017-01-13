@@ -1,9 +1,7 @@
 /*
 *  AUTHOR - DAVID MEDINA
-*  NOTE - There were many missing parts in the gui jar that caused countless errors. I tried going back to decompile
-*  and edit the files, but i couldn't. Some classes were incomplete(missing essential methods) !!!!
-*
-*
+*  NOTE - There was a method missing in one of the files in the jar.
+*  		  So I recreated a new one, with the correct and update stuff.
 *
 * */
 
@@ -12,10 +10,10 @@ package simonAlex;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import guis.components.Action;
-import guis.components.ClickableScreen;
-import guis.components.TextLabel;
-import guis.components.Visible;
+import gui.components.Action;
+import gui.components.ClickableScreen;
+import gui.components.TextLabel;
+import gui.components.Visible;
 import partnerCodeHerePlease.Button;
 import partnerCodeHerePlease.Move;
 import partnerCodeHerePlease.Progress;
@@ -40,7 +38,7 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 	@Override
 	public void initAllObjects(ArrayList<Visible> viewObjects) {
 		// TODO Auto-generated method stub
-		addButtons();
+		addButtons(viewObjects);
 		progress = getProgress();
 		label = new TextLabel(130,230,300,40,"Let's play Simon!");
 		moves = new ArrayList<MoveInterface>();
@@ -79,29 +77,21 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		return new Progress();
 	}
 
-	private void addButtons() {
+	private void addButtons(ArrayList<Visible> v) {
 		// TODO Auto-generated method stub
 		int numberOfButtons = 4;
 		Color[] colors = {Color.blue,Color.green,Color.yellow,Color.red};
 		buttons = new ButtonInterfaceSimon[numberOfButtons]; // initialize array.
 		for(int i = 0; i < buttons.length; i++){
-			// In order to set the correct x/y coordinates, I had to use the constructor.
-			// since that was the only way I could access the x and y coordinates.
-			// because setX and setY were not included in the Visible interface.
 			System.out.println("color: " + colors[i]);
+			// to make it easier, I'll set the the fields in the constructor.
 			ButtonInterfaceSimon b = new Button((i + 1) * 150, 400 ,50, 50, colors[i]);//getAButton(colors[i]);
-			b.setColor(colors[i]); // set color.
-			System.out.println("Button has been made i: " + i);
-
-			// I can't use the setter for x/y coordinates, since the Visible interface doesn't have them.
-			//b.setX(800/2+100*(int)Math.cos(Math.PI/3*(i))); CANT USE :(
-			//b.setY(600/2+100*(int)Math.sin(Math.PI/3*(i))); CANT USE :(
+			//b.setColor(colors[i]); // set color.
 			b.setAction(new Action(){
 				public void act(){
 					Thread blink = new Thread(new Runnable(){
 
 						public void run(){
-							System.out.println("RUNING METHOD");
 							b.highlight();
 							
 							try {
@@ -115,19 +105,19 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 						}
 						
 					});
-					blink.start();
+					if(acceptingInput) blink.start();
 					System.out.println("Accepting: " + acceptingInput);
 					if(acceptingInput){
 						//if the user's button matches sequence
 						if(b==moves.get(sequenceIndex).getButton())
 							sequenceIndex++;
 						else{
+							acceptingInput = false;
 							progress.gameOver();
 							return;
 						}	
 					}
 					if(moves.size()==sequenceIndex){
-						System.out.println("size: " + moves.size() + ", sIdx: " + sequenceIndex);
 						Thread nextRound = new Thread(SimonGameScreen.this);
 						nextRound.start();
 						
@@ -136,9 +126,8 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 
 				
 			});
-			System.out.println("DIMMMM");
 			b.dim();
-			viewObjects.add(b); // add components to vector.
+			v.add(b); // add components to vector.
 			buttons[i] = b; // add button to buttons array.
 		}
 	}
@@ -178,9 +167,9 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 			
 			b=moves.get(i).getButton();
 			b.highlight();
-			int sleepTime=1000*(int)Math.exp(roundNumber);
+			//int sleepTime=1000*(int)Math.exp(roundNumber);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(1000 - roundNumber);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

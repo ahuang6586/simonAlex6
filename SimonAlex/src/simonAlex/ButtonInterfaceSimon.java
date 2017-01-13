@@ -2,8 +2,9 @@ package simonAlex;
 
 import java.awt.Color;
 
-import guis.components.Action;
-import guis.components.Clickable;
+//import guis.components.Action;
+import gui.components.Clickable;
+import gui.components.Action;
 
 public interface ButtonInterfaceSimon extends Clickable {
 	
