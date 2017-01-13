@@ -6,7 +6,7 @@ import GUI.GUIApplication;
 public class SimonGame extends GUIApplication {
 	
 	public static void main(String args[]){
-		SimonGame sg = new SimonGame(800,600);
+		SimonGame sg = new SimonGame(800,800);
 		Thread game = new Thread(sg);
 		game.start();
 	}

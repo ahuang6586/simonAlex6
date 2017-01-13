@@ -17,15 +17,13 @@ public interface ButtonInterfaceSimon extends Clickable {
 
 	Color getHColor();
 
-	void setX(int i);
-
-	void setY(int i);
-
 	void setAction(Action action);
 	
 	void highlight();
 	
 	void dim();
+
+	boolean isLit();
 
 	
 
