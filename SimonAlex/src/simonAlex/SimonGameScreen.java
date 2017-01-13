@@ -83,7 +83,6 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 		Color[] colors = {Color.blue,Color.green,Color.yellow,Color.red};
 		buttons = new ButtonInterfaceSimon[numberOfButtons]; // initialize array.
 		for(int i = 0; i < buttons.length; i++){
-			System.out.println("color: " + colors[i]);
 			// to make it easier, I'll set the the fields in the constructor.
 			ButtonInterfaceSimon b = new Button((i + 1) * 150, 400 ,50, 50, colors[i]);//getAButton(colors[i]);
 			//b.setColor(colors[i]); // set color.
@@ -106,7 +105,6 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 						
 					});
 					if(acceptingInput) blink.start();
-					System.out.println("Accepting: " + acceptingInput);
 					if(acceptingInput){
 						//if the user's button matches sequence
 						if(b==moves.get(sequenceIndex).getButton())
@@ -139,7 +137,6 @@ public class SimonGameScreen extends ClickableScreen implements Runnable {
 	@Override
 	public void run() {
 		label.setText("");
-		System.out.println("NEW ROUND");
 		nextRound();
 		
 	}

@@ -15,10 +15,8 @@ public class Button extends Components implements ButtonInterfaceSimon {
 
 	public Button(int x, int y, int w, int h, Color color) {
 		super(x, y, w, h);
-		System.out.println("COLORS NOT SET");
 		this.color = color; // current color.
 		this.hColor = color; // color for highlighted state.
-		System.out.println("DONECONST");
 	}
 
 	@Override
@@ -28,7 +26,6 @@ public class Button extends Components implements ButtonInterfaceSimon {
 		// color if they have one.
 		if(getColor() == null) g.setColor(Color.BLACK);
 		else {
-			//System.out.println("Color SET: " + getColor() + "x: " + getX() + ", y: " + getY() + "\nw: " + getWidth() + " h: " + getHeight());
 			g.setColor(getColor()); // if it was initiated, set it.
 		}
 		g.fillRoundRect(0, 0, getWidth(), getHeight(), 35, 25);
